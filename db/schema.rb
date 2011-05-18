@@ -10,7 +10,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110426054921) do
+ActiveRecord::Schema.define(:version => 20110518152420) do
+
+  create_table "profile_attributes", :force => true do |t|
+    t.string   "name"
+    t.string   "value"
+    t.string   "type"
+    t.boolean  "active",     :default => true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", :force => true do |t|
+    t.string   "name"
+    t.boolean  "active",     :default => true
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                                 :default => "", :null => false

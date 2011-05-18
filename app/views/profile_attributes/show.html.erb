@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @profile_attribute.name %>
+</p>
+
+<p>
+  <b>Value:</b>
+  <%= @profile_attribute.value %>
+</p>
+
+<p>
+  <b>Type:</b>
+  <%= @profile_attribute.type %>
+</p>
+
+<p>
+  <b>Active:</b>
+  <%= @profile_attribute.active %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @profile_attribute.user %>
+</p>
+
+
+<%= link_to 'Edit', edit_profile_attribute_path(@profile_attribute) %> |
+<%= link_to 'Back', profile_attributes_path %>

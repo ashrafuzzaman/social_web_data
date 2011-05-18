@@ -1,2 +1,6 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+u = User.create(:email => "ashrafuzzaman.g2@gmail.com", :password => "123456")
+u = User.find_by_email("ashrafuzzaman.g2@gmail.com")
+u.profiles.create(:name => "Master profile")
+
+u.profile_attributes.create(:name => "First name", :value => "A.K.M.")
+u.profile_attributes.create(:name => "Last name", :value => "Ashrafuzzaman")

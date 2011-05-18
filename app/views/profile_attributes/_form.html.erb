@@ -1,0 +1,37 @@
+<%= form_for(@profile_attribute) do |f| %>
+  <% if @profile_attribute.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile_attribute.errors.count, "error") %> prohibited this profile_attribute from being saved:</h2>
+
+      <ul>
+      <% @profile_attribute.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br />
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :active %><br />
+    <%= f.check_box :active %>
+  </div>
+  <div class="field">
+    <%= f.label :user %><br />
+    <%= f.text_field :user %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
