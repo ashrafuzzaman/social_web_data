@@ -3,7 +3,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.xml
   def index
-    @profiles = Profile.all
+    @profiles = current_user.profiles
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/1
   # GET /profiles/1.xml
   def show
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profiles.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -28,7 +28,7 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   # GET /profiles/new.xml
   def new
-    @profile = Profile.new
+    @profile = current_user.profiles.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -47,7 +47,7 @@ class ProfilesController < ApplicationController
   # POST /profiles.xml
   # curl -d "profile[name]=MasterProfile" http://localhost:3000/profiles.json
   def create
-    @profile = Profile.new(params[:profile])
+    @profile = current_user.profiles.new(params[:profile])
 
     respond_to do |format|
       if @profile.save
@@ -65,7 +65,7 @@ class ProfilesController < ApplicationController
   # PUT /profiles/1
   # PUT /profiles/1.xml
   def update
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profiles.find(params[:id])
 
     respond_to do |format|
       if @profile.update_attributes(params[:profile])
@@ -83,7 +83,7 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.xml
   def destroy
-    @profile = Profile.find(params[:id])
+    @profile = current_user.profiles.find(params[:id])
     @profile.destroy
 
     respond_to do |format|

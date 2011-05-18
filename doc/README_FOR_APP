@@ -1,6 +1,11 @@
 u = User.create(:email => "ashrafuzzaman.g2@gmail.com", :password => "123456")
 u = User.find_by_email("ashrafuzzaman.g2@gmail.com")
-u.profiles.create(:name => "Master profile")
+u.profiles.create!(:name => "Master profile")
 
 u.profile_attributes.create(:name => "First name", :value => "A.K.M.")
 u.profile_attributes.create(:name => "Last name", :value => "Ashrafuzzaman")
+
+
+#Create profile post
+curl -d "email=ashrafuzzaman.g2@gmail.com&password=123456" http://localhost:3000/api/sign_in.json
+curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=4aqOqB9yhfPXxRrv07kY" http://localhost:3000/profiles.json

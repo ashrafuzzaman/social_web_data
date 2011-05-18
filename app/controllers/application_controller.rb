@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   def load_user
     @user = User.find_by_email(params[:email])
+    current_user ||= @user
   end
 
   def authenticate_with_token
