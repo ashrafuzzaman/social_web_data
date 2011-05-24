@@ -7,6 +7,7 @@ class ProfileAttributesController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @profile_attributes }
+      format.json  { render :json => @profile_attributes }
     end
   end
 

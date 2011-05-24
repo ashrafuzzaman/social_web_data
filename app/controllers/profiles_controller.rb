@@ -2,6 +2,7 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_with_token
   # GET /profiles
   # GET /profiles.xml
+  # curl "http://localhost:3000/profiles.json?email=ashrafuzzaman.g2@gmail.com&auth_token=7thDNCGZCkKwrtGVHbn0"
   def index
     @profiles = current_user.profiles
 
