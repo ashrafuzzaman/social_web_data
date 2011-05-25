@@ -3,13 +3,11 @@
 one:
   name: MyString
   value: MyString
-  type: MyString
-  active: false
+  attribute_type: MyString
   user: 
 
 two:
   name: MyString
   value: MyString
-  type: MyString
-  active: false
+  attribute_type: MyString
   user: 

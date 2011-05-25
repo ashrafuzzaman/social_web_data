@@ -1,8 +1,7 @@
 class ApiController < ApplicationController
-  before_filter :load_user, :except => [:user_register]
   before_filter :authenticate_with_token, :except => [:user_register]
 
-  #curl -d "email=test@test.com&password=123456" http://localhost:3000/api/users.json
+  #curl -d "email=ashrafuzzaman.g2@gmail.com&password=123456" http://localhost:3000/api/users.json
   def user_register
     logger.info "User Info :: #{params[:email]} #{params[:password]}"
     @user = User.create(:email => params[:email], :password => params[:password], :data_service_host => "http://social-web-data.heroku.com")

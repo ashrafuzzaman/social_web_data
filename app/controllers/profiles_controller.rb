@@ -93,4 +93,26 @@ class ProfilesController < ApplicationController
       format.json  { render :json => {:status => "SUCCESS"} }
     end
   end
+
+  # GET /profile/:ID/attributes.json
+  # curl "http://localhost:3000/profile/1/attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv"
+  def attributes
+    @profile = current_user.profiles.find(params[:id])
+
+    respond_to do |format|
+      format.json  { render :json => @profile.profile_attributes }
+    end
+  end
+
+  # POST /profile/:ID/create_attributes
+  # curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv&ids=2,3" http://localhost:3000/profiles/1/create_attributes.json
+  def create_attributes
+    @profile = current_user.profiles.find(params[:id])
+    @profile.profile_attribute_ids = params[:ids]
+    
+    respond_to do |format|
+      format.json  { render :json => @profile.profile_attributes }
+    end
+  end
+
 end

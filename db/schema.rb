@@ -10,13 +10,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110518152420) do
+ActiveRecord::Schema.define(:version => 20110524114424) do
 
   create_table "profile_attributes", :force => true do |t|
     t.string   "name"
     t.string   "value"
-    t.string   "type"
-    t.boolean  "active",     :default => true
+    t.string   "attribute_type"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -28,6 +27,11 @@ ActiveRecord::Schema.define(:version => 20110518152420) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "profiles_attributes", :id => false, :force => true do |t|
+    t.integer "profile_id"
+    t.integer "profile_attribute_id"
   end
 
   create_table "users", :force => true do |t|

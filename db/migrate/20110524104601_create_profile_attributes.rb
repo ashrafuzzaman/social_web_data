@@ -3,8 +3,7 @@ class CreateProfileAttributes < ActiveRecord::Migration
     create_table :profile_attributes do |t|
       t.string :name
       t.string :value
-      t.string :type
-      t.boolean :active, :default => true
+      t.string :attribute_type
       t.references :user
 
       t.timestamps

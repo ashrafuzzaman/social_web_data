@@ -1,7 +1,12 @@
 SocialWebData::Application.routes.draw do
   resources :profile_attributes
 
-  resources :profiles
+  resources :profiles do
+    member do
+      get 'attributes'
+      post 'create_attributes'
+    end
+  end
 
   devise_for :users, :controllers => {:sessions => 'api_session'}, :skip => [:sessions] do
     post 'api/sign_in' => 'api_session#api_sign_in'
