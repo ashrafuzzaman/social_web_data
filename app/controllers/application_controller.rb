@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_with_token
+    if !params[:email]
+      render :json => {:error => "email is empty"}
+      return
+    elsif !params[:auth_token]
+      render :json => {:error => "auth_token is empty"}
+      return
+    end
+
     load_user
     if @user.present? && @user.authentication_token == params[:auth_token]
       true

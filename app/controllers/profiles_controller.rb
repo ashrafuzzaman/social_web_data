@@ -3,6 +3,7 @@ class ProfilesController < ApplicationController
   # GET /profiles
   # GET /profiles.xml
   # curl "http://localhost:3000/profiles.json?email=ashrafuzzaman.g2@gmail.com&auth_token=7thDNCGZCkKwrtGVHbn0"
+  # result :: [{"profile":{"name":"MasterProfile","created_at":"2011-06-01T19:09:50Z","updated_at":"2011-06-01T19:09:50Z","id":1,"user_id":1,"active":true}}]
   def index
     @profiles = current_user.profiles
 
@@ -46,7 +47,7 @@ class ProfilesController < ApplicationController
 
   # POST /profiles
   # POST /profiles.xml
-  # curl -d "profile[name]=MasterProfile" http://localhost:3000/profiles.json
+  # curl -d "profile[name]=MasterProfile&email=ashrafuzzaman.g2@gmail.com&auth_token=7thDNCGZCkKwrtGVHbn0" http://localhost:3000/profiles.json
   def create
     @profile = current_user.profiles.new(params[:profile])
 
