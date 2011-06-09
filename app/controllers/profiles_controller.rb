@@ -85,7 +85,7 @@ class ProfilesController < ApplicationController
   # DELETE /profiles/1
   # DELETE /profiles/1.xml
   def destroy
-    @profile = current_user.profiles.find(params[:id])
+    @profile = !params[:name].nil? ? current_user.profiles.find_by_name(params[:name]) : current_user.profiles.find(params[:id])
     @profile.destroy
 
     respond_to do |format|
