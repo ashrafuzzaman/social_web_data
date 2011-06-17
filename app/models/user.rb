@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   has_many :profiles
   has_many :profile_attributes
   
+  after_create :populate_default_attributes
+  
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable, :lockable and :timeoutable
   devise :database_authenticatable, :registerable,
@@ -23,5 +25,9 @@ class User < ActiveRecord::Base
         user.email = data["email"]
       end
     end
+  end
+  
+  def populate_default_attributes
+    profile_attributes << ProfileAttribute.default_attributes
   end
 end

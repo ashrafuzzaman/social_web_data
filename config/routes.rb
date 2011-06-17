@@ -4,6 +4,7 @@ SocialWebData::Application.routes.draw do
   resources :profiles do
     member do
       get 'attributes'
+      get 'all_attributes'
       post 'create_attributes'
     end
   end

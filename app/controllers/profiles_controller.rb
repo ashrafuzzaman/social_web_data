@@ -96,12 +96,35 @@ class ProfilesController < ApplicationController
   end
 
   # GET /profile/:ID/attributes.json
-  # curl "http://localhost:3000/profile/1/attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv"
+  # curl "http://localhost:3000/profiles/1/attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv"
   def attributes
     @profile = current_user.profiles.find(params[:id])
 
     respond_to do |format|
       format.json  { render :json => @profile.profile_attributes }
+    end
+  end
+
+  # GET /profile/:ID/all_attributes.json
+  # curl "http://localhost:3000/profiles/3/all_attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=7w38pGIRZ1cS1fpVpP9C"
+  def all_attributes
+    @profile = current_user.profiles.find(params[:id])
+    profile_attributes = @profile.profile_attributes
+    all_attributes = current_user.profile_attributes
+
+    all_attributes.each { |profile_attribute| 
+        profile_attributes.each { |pa|
+          profile_attribute.selected = true if pa.id == profile_attribute.id
+        }
+    }
+    
+    all_attributes_json = []
+    all_attributes.each { |attr|
+      all_attributes_json << {:id => attr.id, :name => attr.name, :value => attr.value, :attribute_type => attr.attribute_type, :selected => attr.selected} 
+    }
+    
+    respond_to do |format|
+      format.json  { render :json => all_attributes_json }
     end
   end
 
