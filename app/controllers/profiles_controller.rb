@@ -124,7 +124,7 @@ class ProfilesController < ApplicationController
     }
     
     respond_to do |format|
-      format.json  { render :json => all_attributes_json }
+      format.json  { render :json => {:profile_attributes => all_attributes_json }}
     end
   end
 
