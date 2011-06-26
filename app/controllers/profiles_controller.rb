@@ -120,7 +120,7 @@ class ProfilesController < ApplicationController
     
     all_attributes_json = []
     all_attributes.each { |attr|
-      all_attributes_json << {:id => attr.id, :name => attr.name, :value => attr.value, :attribute_type => attr.attribute_type, :selected => attr.selected} 
+      all_attributes_json << {:profile_attribute => {:id => attr.id, :name => attr.name, :value => attr.value, :attribute_type => attr.attribute_type, :selected => (attr.selected == true)}} 
     }
     
     respond_to do |format|
