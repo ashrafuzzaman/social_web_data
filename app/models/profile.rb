@@ -5,6 +5,6 @@ class Profile < ActiveRecord::Base
   after_create :create_default_attributes
   
   def create_default_attributes
-    self.profile_attributes << ProfileAttribute.profile_attributes
+    self.profile_attributes << ProfileAttribute.default_attributes
   end
 end
