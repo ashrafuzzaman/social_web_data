@@ -4,8 +4,12 @@ u.profiles.create!(:name => "Master profile")
 
 #Create profile post
 curl -d "email=ashrafuzzaman.g2@gmail.com&password=123456" http://localhost:3000/api/sign_in.json
-curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=4aqOqB9yhfPXxRrv07kY" http://localhost:3000/profiles.json
+curl -d "profile[name]=MasterProfile&email=ashrafuzzaman.g2@gmail.com&auth_token=RKvYTygPByIyBKWLblUX" http://localhost:3000/profiles.json
 
+curl "http://localhost:3000/profiles.json?email=ashrafuzzaman.g2@gmail.com&auth_token=G6vAylJMyiyjmW8ybpOQ"
+
+#Fetching attributes
+curl "http://localhost:3000/profiles/6/all_attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=RKvYTygPByIyBKWLblUX"
 
 p = u.profiles.last
 p.profile_attributes.create(:name => "First name", :value => "A.K.M.", :attribute_type => "string")
