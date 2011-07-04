@@ -135,7 +135,7 @@ class ProfilesController < ApplicationController
     @profile.profile_attribute_ids = params[:ids]
     
     respond_to do |format|
-      format.json  { render :json => @profile.profile_attributes }
+      format.json  { render :json => {:profile_attribute => @profile.profile_attributes }}
     end
   end
 
