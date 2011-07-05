@@ -132,7 +132,12 @@ class ProfilesController < ApplicationController
   # curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv&ids=2,3" http://localhost:3000/profiles/1/create_attributes.json
   def create_attributes
     @profile = current_user.profiles.find(params[:id])
-    @profile.profile_attribute_ids = params[:ids]
+    attribute_ids = []
+    params[:ids].split(',').each do |attr_id|
+      attribute_ids << attr_id.to_i
+    end
+
+    @profile.profile_attribute_ids = attribute_ids
     
     respond_to do |format|
       format.json  { render :json => {:profile_attribute => @profile.profile_attributes }}

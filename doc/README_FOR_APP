@@ -9,7 +9,10 @@ curl -d "profile[name]=MasterProfile&email=ashrafuzzaman.g2@gmail.com&auth_token
 curl "http://localhost:3000/profiles.json?email=ashrafuzzaman.g2@gmail.com&auth_token=G6vAylJMyiyjmW8ybpOQ"
 
 #Fetching attributes
-curl "http://localhost:3000/profiles/6/all_attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=RKvYTygPByIyBKWLblUX"
+curl "http://localhost:3000/profiles/6/all_attributes.json?email=ashrafuzzaman.g2@gmail.com&auth_token=DigaVrcMBHH29YUeOMYa"
+
+#Updating Attributes
+curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=DigaVrcMBHH29YUeOMYa&ids=36,37" http://localhost:3000/profiles/6/create_attributes.json
 
 p = u.profiles.last
 p.profile_attributes.create(:name => "First name", :value => "A.K.M.", :attribute_type => "string")
