@@ -63,6 +63,7 @@ class ProfileAttributesController < ApplicationController
 
   # PUT /profile_attributes/1
   # PUT /profile_attributes/1.xml
+  # curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv&profile_attribute[value]=test" http://localhost:3000/profile_attributes/1.json
   def update
     @profile_attribute = current_user.profile_attributes.find(params[:id])
 
@@ -70,7 +71,7 @@ class ProfileAttributesController < ApplicationController
       if @profile_attribute.update_attributes(params[:profile_attribute])
         format.html { redirect_to(@profile_attribute, :notice => 'Profile attribute was successfully updated.') }
         format.xml  { head :ok }
-        format.json { head :ok }
+        format.json { render :json => {:profile_attribute => @profile_attribute} }
       else
         format.html { render :action => "edit" }
         format.xml  { render :xml => @profile_attribute.errors, :status => :unprocessable_entity }
