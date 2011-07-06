@@ -47,6 +47,8 @@ class ProfileAttributesController < ApplicationController
   # curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=0401QHdx5Nll9UNHP2Lv&profile_attribute[name]=First name" http://localhost:3000/profile_attributes.json
   def create
     @profile_attribute = current_user.profile_attributes.new(params[:profile_attribute])
+    @profile = Profile.find params[:profile_id]
+    @profile.profile_attributes << @profile_attribute 
 
     respond_to do |format|
       if @profile_attribute.save
