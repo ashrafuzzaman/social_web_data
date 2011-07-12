@@ -91,7 +91,7 @@ class ProfileAttributesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(profile_attributes_url) }
       format.xml  { head :ok }
-      format.json { head :ok }
+      format.json { render :json => {:profile_attribute => @profile_attribute} }
     end
   end
 end
