@@ -1,0 +1,27 @@
+<h1>Listing friends</h1>
+
+<table>
+  <tr>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Shared key</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @friends.each do |friend| %>
+  <tr>
+    <td><%= friend.email %></td>
+    <td><%= friend.status %></td>
+    <td><%= friend.shared_key %></td>
+    <td><%= link_to 'Show', friend %></td>
+    <td><%= link_to 'Edit', edit_friend_path(friend) %></td>
+    <td><%= link_to 'Destroy', friend, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Friend', new_friend_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  email: MyString
+  status: MyString
+  shared_key: MyString
+
+two:
+  email: MyString
+  status: MyString
+  shared_key: MyString

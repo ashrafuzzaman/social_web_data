@@ -16,3 +16,13 @@ curl -d "email=ashrafuzzaman.g2@gmail.com&auth_token=DigaVrcMBHH29YUeOMYa&ids=36
 
 p = u.profiles.last
 p.profile_attributes.create(:name => "First name", :value => "A.K.M.", :attribute_type => "string")
+
+
+u = User.find_by_email("ashrafuzzaman.g2@gmail.com")
+u = User.find_by_email("zmn.ashraf@gmail.com")
+f = Friend.new
+f = u.friends.create(:email => "zmn.ashraf@gmail.com", :shared_key => "asdad")
+
+
+User.find_by_email("zmn.ashraf@gmail.com").friends
+User.find_by_email("ashrafuzzaman.g2@gmail.com").friends

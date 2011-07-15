@@ -1,4 +1,11 @@
 SocialWebData::Application.routes.draw do
+  resources :friends do
+    collection do
+      post 'handle_friend_req'
+      post 'save_friend_requested'
+    end
+  end
+
   resources :profile_attributes
 
   resources :profiles do

@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
   has_many :profiles
   has_many :profile_attributes
-  
+  has_many :friends
+
   after_create :populate_default_attributes
   
   # Include default devise modules. Others available are:
