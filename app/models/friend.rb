@@ -4,6 +4,8 @@ class Friend < ActiveRecord::Base
   validates_uniqueness_of :email, :scope => :user_id
 
   scope :requested, where(:status => "requested")
+  scope :received_request, where(:status => "received_request")
+
   def request!
     update_attribute(:status, "requested")
   end

@@ -3,6 +3,9 @@ SocialWebData::Application.routes.draw do
     collection do
       post 'handle_friend_req'
       post 'save_friend_requested'
+      get 'friend_reqests'
+      post 'accept_friend_req'
+      post 'accepted_friend_req'
     end
   end
 
@@ -24,5 +27,11 @@ SocialWebData::Application.routes.draw do
   match 'users' => 'users#index'
   match 'users/clear' => 'users#clear'
   post 'api/users' => 'api#user_register'
+
+  resources :notification do
+    collection do
+      get 'friend_requests'
+    end
+  end
 
 end

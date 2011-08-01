@@ -1,6 +1,6 @@
 class FriendsController < ApplicationController
 
-  before_filter :authenticate_with_token, :only => [:friend_reqests, :save_friend_requested]
+  before_filter :authenticate_with_token, :only => [:friend_reqests, :save_friend_requested, :accept_friend_req]
   # POST /friends/handle_friend_req
   # params email=ashrafuzzaman.g2@gmail.com&friend_with=zmn.ashraf@gmail.com&shared_key=ASKDMQW123123
   def handle_friend_req
@@ -15,6 +15,29 @@ class FriendsController < ApplicationController
 
   end
 
+  # params email=ashrafuzzaman.g2@gmail.com&friend_with=zmn.ashraf@gmail.com
+  def accept_friend_req
+    friend = current_user.friends.find_by_email(params[:friend_with])
+    if friend
+      friend.accept!
+      render :json => friend
+    else
+      render :json => {:error => "Friend not found"}
+    end
+
+  end
+
+  def accepted_friend_req
+    user = User.find_by_email(params[:friend_with])
+    friend = user.friends.find_by_email(params[:email])
+    if friend.shared_key == params[:shared_key]
+      friend.accept!
+      render :json => friend
+    else
+      render :json => {:error => "Friend not found"}
+    end
+  end
+
   # POST /save_friend_reqested
   # params friend_with=zmn.ashraf@gmail.com&shared_key=ASKDMQW123123
   def save_friend_requested
@@ -27,11 +50,7 @@ class FriendsController < ApplicationController
   # get /friend_reqests
   def friend_reqests
     friends = current_user.friends.received_request
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json  { render :json => {:friends => @friends } }
-    end
+    render :json => {:friends => friends }
   end
 
   # GET /friends/new
