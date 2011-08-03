@@ -22,4 +22,21 @@ class ApplicationController < ActionController::Base
       false
     end
   end
+
+  def authenticate_friend
+    if !params[:email] || !params[:friends_email] || !params[:shared_key]  
+      render :json => {:error => "Prams missing"}
+      return
+    end
+
+    @user = User.find_by_email(params[:email])
+    @friend = Friend.find_by_email(params[:friends_email])
+    if @friend.present? && @friend.accpeted? && @friend.shared_key == params[:shared_key]
+      @friend = Friend.find_by_email(params[:friends_email])
+      true
+    else
+      render :json => {:error => "Invalid authentication"}
+      false
+    end
+  end
 end

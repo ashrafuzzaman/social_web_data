@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :profiles
   has_many :profile_attributes
   has_many :friends
+  has_many :status, :class_name => "Status"
 
   after_create :populate_default_attributes
   

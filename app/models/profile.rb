@@ -1,5 +1,6 @@
 class Profile < ActiveRecord::Base
   belongs_to :user
+  has_many :status, :class_name => "Status"
   has_and_belongs_to_many :profile_attributes, :join_table => "profiles_attributes"
   has_and_belongs_to_many :friends, :join_table => :profiles_friends 
 

@@ -1,4 +1,6 @@
 SocialWebData::Application.routes.draw do
+  resources :statuses
+
   resources :friends do
     collection do
       post 'handle_friend_req'
