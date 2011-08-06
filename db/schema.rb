@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110801153423) do
+ActiveRecord::Schema.define(:version => 20110813073014) do
 
   create_table "friends", :force => true do |t|
     t.string   "email"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20110801153423) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data_store"
   end
 
   create_table "profile_attributes", :force => true do |t|

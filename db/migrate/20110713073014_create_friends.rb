@@ -4,6 +4,7 @@ class CreateFriends < ActiveRecord::Migration
       t.string :email
       t.string :status
       t.string :shared_key
+      t.string :data_store
       t.references :user
 
       t.timestamps

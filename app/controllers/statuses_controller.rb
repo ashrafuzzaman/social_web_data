@@ -1,9 +1,19 @@
 class StatusesController < ApplicationController
-  before_filter :authenticate_with_token
+  before_filter :authenticate_with_token, :except => [:friends_status] 
+  before_filter :authenticate_friend, :only => [:friends_status] 
   # GET /statuses
   # GET /statuses.json
   def index
-    @statuses = Status.all(:limit => 5)
+    @statuses = @user.status.all(:limit => 5)
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json  { render :json => { :statuses => @statuses } }
+    end
+  end
+
+  def friends_status
+    profile_ids = @friend.profile_ids
+    @statuses = @user.status.all(:conditions => [ "profile_id IN (?)", profile_ids], :limit => 5)
     respond_to do |format|
       format.html # index.html.erb
       format.json  { render :json => { :statuses => @statuses } }

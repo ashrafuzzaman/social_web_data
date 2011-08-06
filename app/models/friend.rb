@@ -3,6 +3,7 @@ class Friend < ActiveRecord::Base
   has_and_belongs_to_many :profiles, :join_table => :profiles_friends
   validates_uniqueness_of :email, :scope => :user_id
 
+  scope :accepted, where(:status => "accepted")
   scope :requested, where(:status => "requested")
   scope :received_request, where(:status => "received_request")
 
@@ -13,6 +14,10 @@ class Friend < ActiveRecord::Base
   scope :received_request, where(:status => "received_request")
   def receive_request!
     update_attribute(:status, "received_request")
+  end
+
+  def accepted?
+    status == "accepted"
   end
 
   def accept!

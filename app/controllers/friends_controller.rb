@@ -1,12 +1,12 @@
 class FriendsController < ApplicationController
 
-  before_filter :authenticate_with_token, :only => [:friend_reqests, :save_friend_requested, :accept_friend_req]
+  before_filter :authenticate_with_token, :only => [:friend_reqests, :save_friend_requested, :accept_friend_req, :index]
   # POST /friends/handle_friend_req
   # params email=ashrafuzzaman.g2@gmail.com&friend_with=zmn.ashraf@gmail.com&shared_key=ASKDMQW123123
   def handle_friend_req
     @user = User.find_by_email(params[:friend_with])
     if !@user.friends.find_by_email(params[:email])
-      @friend = @user.friends.create(:email => params[:email], :shared_key => params[:shared_key])
+      @friend = @user.friends.create(:email => params[:email], :shared_key => params[:shared_key], :data_store => params[:data_store])
       @friend.receive_request!
       render :json => @friend
     else
@@ -41,10 +41,16 @@ class FriendsController < ApplicationController
   # POST /save_friend_reqested
   # params friend_with=zmn.ashraf@gmail.com&shared_key=ASKDMQW123123
   def save_friend_requested
-    @friend = current_user.friends.create(:email => params[:friend_with], :shared_key => params[:shared_key])
+    @friend = current_user.friends.create(:email => params[:friend_with], :shared_key => params[:shared_key], :data_store => params[:data_store])
     @friend.request!
 
     render :json => @friend
+  end
+
+  def attach_profile
+    friend = current_user.friends.find_by_email(params[:friends_email])
+    friend.profiles << Profile.find(params[:profile_id])
+    render :json => friend
   end
 
   # get /friend_reqests
@@ -67,12 +73,8 @@ class FriendsController < ApplicationController
   # GET /friends
   # GET /friends.json
   def index
-    @friends = Friend.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json  { render :json => @friends }
-    end
+    friends = current_user.friends.accepted
+    render :json => {:friends => friends }
   end
 
   # GET /friends/1

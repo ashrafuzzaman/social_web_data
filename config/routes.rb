@@ -1,5 +1,9 @@
 SocialWebData::Application.routes.draw do
-  resources :statuses
+  resources :statuses do
+    collection do
+      get 'friends_status'
+    end
+  end
 
   resources :friends do
     collection do
@@ -8,10 +12,15 @@ SocialWebData::Application.routes.draw do
       get 'friend_reqests'
       post 'accept_friend_req'
       post 'accepted_friend_req'
+      post 'attach_profile'
     end
   end
 
-  resources :profile_attributes
+  resources :profile_attributes do
+    collection do
+      get 'friends_profile_attribute'
+    end
+  end
 
   resources :profiles do
     member do
