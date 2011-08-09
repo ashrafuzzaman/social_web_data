@@ -10,7 +10,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813073014) do
+ActiveRecord::Schema.define(:version => 20110808160608) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "comment"
+    t.integer  "resource_id"
+    t.string   "resource_type"
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["friend_id"], :name => "index_comments_on_friend_id"
+  add_index "comments", ["resource_id"], :name => "index_comments_on_resource_id"
+  add_index "comments", ["resource_type"], :name => "index_comments_on_resource_type"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "friends", :force => true do |t|
     t.string   "email"
@@ -19,7 +34,6 @@ ActiveRecord::Schema.define(:version => 20110813073014) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "data_store"
   end
 
   create_table "profile_attributes", :force => true do |t|
