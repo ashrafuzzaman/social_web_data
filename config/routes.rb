@@ -48,5 +48,6 @@ SocialWebData::Application.routes.draw do
   post 'comments/post_comment' => 'comments#post_comment'
   post 'comments/post_comment_on_friend' => 'comments#post_comment_on_friend'
   get 'comments' => 'comments#index'
+  get 'comments/comments_of_friend' => 'comments#comments_of_friend'
 
 end
