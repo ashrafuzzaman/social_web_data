@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110808160608) do
+ActiveRecord::Schema.define(:version => 20110817021859) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20110808160608) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "data_store"
   end
 
   create_table "profile_attributes", :force => true do |t|
