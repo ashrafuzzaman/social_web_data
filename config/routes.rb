@@ -1,4 +1,6 @@
 SocialWebData::Application.routes.draw do
+  root :to => "users#index"
+  
   resources :statuses do
     collection do
       get 'friends_status'

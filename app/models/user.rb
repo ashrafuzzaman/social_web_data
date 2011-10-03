@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  has_many :profiles
-  has_many :profile_attributes
-  has_many :friends
-  has_many :status, :class_name => "Status"
+  has_many :profiles, :dependent => :destroy
+  has_many :profile_attributes, :dependent => :destroy
+  has_many :friends, :dependent => :destroy
+  has_many :status, :class_name => "Status", :dependent => :destroy
 
   after_create :populate_default_attributes
   
