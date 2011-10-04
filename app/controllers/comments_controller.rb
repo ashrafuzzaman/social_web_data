@@ -29,7 +29,7 @@ class CommentsController < ApplicationController
   end
 
   def post_comment
-    comment_hash = {:resource_type => params[:resource_type], :resource_id => params[:resource_id], :comment => params[:comment], :user_id => current_user.id }
+    comment_hash = {:resource_type => params[:resource_type], :resource_id => params[:resource_id], :sequence_number => params[:sequence_number], :comment => params[:comment], :user_id => current_user.id }
     if params[:friends_email]
       friend = Friend.find_by_email(params[:friends_email])
       comment_hash.merge!({:friend_id => friend.id})

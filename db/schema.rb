@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110817021859) do
+ActiveRecord::Schema.define(:version => 20111004101633) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20110817021859) do
     t.integer  "friend_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "sequence_number"
   end
 
   add_index "comments", ["friend_id"], :name => "index_comments_on_friend_id"
