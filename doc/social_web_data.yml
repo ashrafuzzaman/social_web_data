@@ -1,0 +1,226 @@
+description: These are the REST api documentation of the data service for users.
+    The project source is hosted in <a href="https://github.com/ashrafuzzaman/social_web_data">https://github.com/ashrafuzzaman/social_web_data</a>. And the service is hosted in <a href="http://social-web-data.heroku.com">http://social-web-data.heroku.com</a>
+apis:
+    -   title: Fetch friends status
+        url: /statuses/friends_status.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: friends_email, description: the email of the friend}
+            - {name: shared_key, description: the key that was shared while accepting as friend}
+        description: Returns the status list of a friend. This is requested in the friends data server.
+
+    -   title: Fetch own status
+        url: /statuses.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: Returns the status list of the user. This is requested in the user's own data server.
+
+    -   title: Create status
+        url: /statuses.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: status, description: the status text}
+        description: This is used to create the status of user in their own data server
+
+    -   title: Fetch status information
+        url: /statuses/{:id}.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: id, description: the id of the status in database}
+        description: This is used to fetch status details
+
+    -   title: Handle friends request accepted
+        url: /friends/handle_friend_req.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: friends_email, description: the email of the friend}
+            - {name: shared_key, description: the key that was shared while accepting as friend}
+        description: After accepting fried request this is used to notify after accepting and to update to shared secret key.
+
+    -   title: It stores the friend requests in the users data base
+        url: /friends/save_friend_requested.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: friends_email, description: the email of the friend}
+            - {name: shared_key, description: the key that was shared while accepting as friend}
+        description: This creates a friend request notification, which latern on the user have to accept.
+
+    -   title: Pending friend requests
+        url: /friends/friend_reqests.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: This returns a list of friends whi requested to join your network.
+
+    -   title: The cofirmation to accept friend request
+        url: /friends/accept_friend_req.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: friend_with, description: the email of the friend}
+        description: This service confirms a friend request and adds in the network.
+
+    -   title: Notify the friend as we accept his request
+        url: /friends/accepted_friend_req.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: friend_with, description: the email of the friend}
+        description: This service notifyes the friend that the request is accepted. This is posted in friends server.
+
+    -   title: Assign profile to friend
+        url: /friends/attach_profile.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: friends_email, description: the email of the friend}
+            - {name: profile_id, description: the id of the profile to be shared with the friend}
+        description: This service shares profiles to friend.
+
+    -   title: Friend list
+        url: /friends.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: This service fetches the friend list of confirmed friends.
+
+    -   title: Fetch friends profile
+        url: /profile_attributes/friends_profile_attribute.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: shared_key, description: the shared key that users shared during friend request}
+            - {name: friends_email, description: the email of the friend}
+        description: Fetch friends profile attributes that are shared by the user.
+
+    -   title: User's profile attributes
+        url: /profile_attributes.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: Fetch users own profile attributes.
+
+    -   title: Create new profile attribute
+        url: /profile_attributes.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: "profile_attribute[name]", description: attribute name}
+            - {name: "profile_attribute[value]", description: the value of the attribute}
+        description: Create new profile attribute in the user's data server.
+
+    -   title: Delete profile attribute
+        url: /profile_attributes/{:id}.json
+        method: DELETE
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: id, description: id of the attribute}
+        description: Deletes profile attribute from all the profiles
+
+    -   title: Fetch users all profile attributes
+        url: /profiles/{:id}/all_attributes.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: Fetch users own profile attributes from all the profiles. This is the collection of all the attributes.
+
+    -   title: Profile list
+        url: /profiles.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: Fetch all profiles
+
+    -   title: Create profile
+        url: /profiles.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: "profile[name]", description: the name of the profile}
+        description: Create new profile
+
+    -   title: Fetch profile details
+        url: /profiles/{:id}.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: id, description: the id of the profile}
+        description: Fetch the detail info for that profile
+
+    -   title: Sign in user
+        url: /api/sign_in.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: password, description: password to authenticate}
+        description: Returns an auth token to use authenticated services
+
+    -   title: Create user
+        url: /api/users.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: password, description: password to authenticate}
+        description: Returns an auth token to use authenticated services
+
+    -   title: List all the notifications
+        url: /notification/friend_requests.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+        description: Fetch all the notifications in the user's server. For now it is only the friend request
+
+    -   title: Post comment
+        url: /comments/post_comment.json
+        method: POST
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: resource_type, description: "which resource type is the comment is for, i.e. status"}
+            - {name: resource_id, description: the resource identifier in the server the resource is in}
+            - {name: sequence_number, description: last sequence number that the comment has seen. Used to sort the comments}
+            - {name: comment, description: the comment text}
+        description: Post comment in own status that is stored in the user's own server.
+
+    -   title: List of the comments that are posted by the user
+        url: /comments.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: auth_token, description: the auth_token is generated while login}
+            - {name: friends_email, description: the email of the friend}
+            - {name: resource_type, description: "which resource type is the comment is for, i.e. status"}
+            - {name: resource_id, description: the resource identifier in the server the resource is in}
+        description: List of the comments that are posted by the user which are stored in the user's own server.
+
+    -   title: List of the comments that friends posted
+        url: /comments/comments_of_friend.json
+        method: GET
+        params:
+            - {name: email, description: the email of the user}
+            - {name: shared_key, description: the key that was shared while accepting as friend}
+            - {name: friends_email, description: the email of the friend}
+            - {name: resource_type, description: "which resource type is the comment is for, i.e. status"}
+            - {name: resource_id, description: the resource identifier in the server the resource is in}
+        description: List of the comments that friends posted on a perticuler resource of the user which are stored in the friends server.

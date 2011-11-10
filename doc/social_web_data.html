@@ -1,0 +1,756 @@
+<html>
+<head>
+<style type="text/css">
+body {
+	color: #4f6b72;
+	background: #E6EAE9;
+    margin:50px 0px; padding:0px;
+	text-align:center;
+}
+
+.center {
+    width:800px;
+	margin:0px auto;
+	text-align:left;
+	padding:15px;
+}
+
+a {
+	color: #c75f3e;
+}
+
+table {
+    width:800px;
+	font: 11px;
+	padding: 0;
+	margin: 10px;
+}
+
+
+th {
+	font: bold 14px;
+	color: #4f6b72;
+	border: 1px solid #C1DAD7;
+	text-align: left;
+	padding: 6px 6px 6px 12px;
+	background: #CAE8EA url(bg_header.jpg) repeat-x;
+}
+
+td {
+	border-right: 1px solid #C1DAD7;
+	border-bottom: 1px solid #C1DAD7;
+	background: #fff;
+	padding: 6px 6px 6px 12px;
+	color: #4f6b72;
+}
+
+td.alt {
+	background: #F5FAFA;
+	color: #797268;
+}
+
+</style>
+</head>
+<body>
+<div class="center">
+<h1>API</h1>
+<div>These are the REST api documentation of the data service for users. The project source is hosted in <a href="https://github.com/ashrafuzzaman/social_web_data">https://github.com/ashrafuzzaman/social_web_data</a>. And the service is hosted in <a href="http://social-web-data.heroku.com">http://social-web-data.heroku.com</a></div>
+    <table cellspacing="0">
+        <th colspan="2">Fetch friends status</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/statuses/friends_status.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>friends_email</b></td>
+                <td class=””>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>shared_key</b></td>
+                <td class=”alt”>the key that was shared while accepting as friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Returns the status list of a friend. This is requested in the friends data server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Fetch own status</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/statuses.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Returns the status list of the user. This is requested in the user's own data server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Create status</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/statuses.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>status</b></td>
+                <td class=”alt”>the status text</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This is used to create the status of user in their own data server</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Fetch status information</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/statuses/{:id}.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>id</b></td>
+                <td class=”alt”>the id of the status in database</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This is used to fetch status details</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Handle friends request accepted</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/handle_friend_req.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>friends_email</b></td>
+                <td class=””>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>shared_key</b></td>
+                <td class=”alt”>the key that was shared while accepting as friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>After accepting fried request this is used to notify after accepting and to update to shared secret key.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">It stores the friend requests in the users data base</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/save_friend_requested.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>friends_email</b></td>
+                <td class=””>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>shared_key</b></td>
+                <td class=”alt”>the key that was shared while accepting as friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This creates a friend request notification, which latern on the user have to accept.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Pending friend requests</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/friend_reqests.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This returns a list of friends whi requested to join your network.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">The cofirmation to accept friend request</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/accept_friend_req.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>friend_with</b></td>
+                <td class=”alt”>the email of the friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This service confirms a friend request and adds in the network.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Notify the friend as we accept his request</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/accepted_friend_req.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>friend_with</b></td>
+                <td class=””>the email of the friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This service notifyes the friend that the request is accepted. This is posted in friends server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Assign profile to friend</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends/attach_profile.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>friends_email</b></td>
+                <td class=”alt”>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>profile_id</b></td>
+                <td class=””>the id of the profile to be shared with the friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This service shares profiles to friend.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Friend list</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/friends.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>This service fetches the friend list of confirmed friends.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Fetch friends profile</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profile_attributes/friends_profile_attribute.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>shared_key</b></td>
+                <td class=””>the shared key that users shared during friend request</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>friends_email</b></td>
+                <td class=”alt”>the email of the friend</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch friends profile attributes that are shared by the user.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">User's profile attributes</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profile_attributes.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch users own profile attributes.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Create new profile attribute</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profile_attributes.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>profile_attribute[name]</b></td>
+                <td class=”alt”>attribute name</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>profile_attribute[value]</b></td>
+                <td class=””>the value of the attribute</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Create new profile attribute in the user's data server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Delete profile attribute</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profile_attributes/{:id}.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>DELETE</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>id</b></td>
+                <td class=”alt”>id of the attribute</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Deletes profile attribute from all the profiles</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Fetch users all profile attributes</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profiles/{:id}/all_attributes.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch users own profile attributes from all the profiles. This is the collection of all the attributes.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Profile list</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profiles.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch all profiles</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Create profile</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profiles.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>profile[name]</b></td>
+                <td class=”alt”>the name of the profile</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Create new profile</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Fetch profile details</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/profiles/{:id}.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>id</b></td>
+                <td class=”alt”>the id of the profile</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch the detail info for that profile</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Sign in user</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/api/sign_in.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>password</b></td>
+                <td class=””>password to authenticate</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Returns an auth token to use authenticated services</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Create user</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/api/users.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>password</b></td>
+                <td class=””>password to authenticate</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Returns an auth token to use authenticated services</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">List all the notifications</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/notification/friend_requests.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Fetch all the notifications in the user's server. For now it is only the friend request</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">Post comment</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/comments/post_comment.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>POST</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>resource_type</b></td>
+                <td class=”alt”>which resource type is the comment is for, i.e. status</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>resource_id</b></td>
+                <td class=””>the resource identifier in the server the resource is in</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>sequence_number</b></td>
+                <td class=”alt”>last sequence number that the comment has seen. Used to sort the comments</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>comment</b></td>
+                <td class=””>the comment text</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>Post comment in own status that is stored in the user's own server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">List of the comments that are posted by the user</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/comments.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>auth_token</b></td>
+                <td class=””>the auth_token is generated while login</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>friends_email</b></td>
+                <td class=”alt”>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>resource_type</b></td>
+                <td class=””>which resource type is the comment is for, i.e. status</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>resource_id</b></td>
+                <td class=”alt”>the resource identifier in the server the resource is in</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>List of the comments that are posted by the user which are stored in the user's own server.</td>
+        </tr>
+    </table>
+    <table cellspacing="0">
+        <th colspan="2">List of the comments that friends posted</th>
+        <tr>
+            <td width="150px"><b>Path</b></td>
+            <td>/comments/comments_of_friend.json</td>
+        </tr>
+        <tr>
+            <td width="150px"><b>HTTP method</b></td>
+            <td>GET</td>
+        </tr>
+            <tr colspan="2"><td class="alt" colspan="2"><b>Params</b></td></tr>
+            <tr>
+                <td class=”alt” width="150px"><b>email</b></td>
+                <td class=”alt”>the email of the user</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>shared_key</b></td>
+                <td class=””>the key that was shared while accepting as friend</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>friends_email</b></td>
+                <td class=”alt”>the email of the friend</td>
+            </tr>
+            <tr>
+                <td class=”” width="150px"><b>resource_type</b></td>
+                <td class=””>which resource type is the comment is for, i.e. status</td>
+            </tr>
+            <tr>
+                <td class=”alt” width="150px"><b>resource_id</b></td>
+                <td class=”alt”>the resource identifier in the server the resource is in</td>
+            </tr>
+        <tr>
+            <td width="150px"><b>Description</b></td>
+            <td>List of the comments that friends posted on a perticuler resource of the user which are stored in the friends server.</td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
